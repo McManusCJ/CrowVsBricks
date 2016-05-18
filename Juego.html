@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<style>
+			canvas{
+				background-image:url("./f3.jpg");
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="img"  width="600px" height="300px">
+		</canvas>
+		<script src="./jQuery.js"></script>
+		<script>
+			var c = document.getElementById("img");
+			var ctx = c.getContext("2d");
+			var crow = new Image();
+			crow.src = "./raven.png";
+			var brick = new Image();
+			brick.src = "./brick.png";
+			var fondo=new Image();
+			fondo.src="./f3.jpg";
+			var xFonSprite=0;
+			var xCrowSprite=0;
+			/*var xBrickCanvas=500;	//valMax=500(?)
+			var yBrickCanvas=0;		//posibles valores 0,100,200*/
+			var xCrowCanvas=50;
+			var yCrowCanvas=50;
+			var n=0;
+			
+			function crearBrick()
+			{
+				var BrickCanvas=new Object();
+				BrickCanvas.posX=550;
+				y=parseInt(Math.random()*100%3);
+				BrickCanvas.posY=y*100;
+				return BrickCanvas;
+			}
+			
+			var brick1=crearBrick();
+			var brick2=crearBrick();
+			var brick3=crearBrick();
+			var brick4=crearBrick();
+			
+			$(document).keydown(function(event){
+				if(event.which==32)
+					if(yCrowCanvas>0)
+						yCrowCanvas-=30;
+			});
+			
+			var imprimir=setInterval(function(){
+				if(xCrowSprite<291)	//esto hace que aletee
+					xCrowSprite+=97;
+				else
+					xCrowSprite=0;
+				
+				if(yCrowCanvas<313)	//hace que tienda a caer y que no se pierda despues de los limites
+					yCrowCanvas+=7;
+				else
+					perdiste();
+				
+				if(!(xCrowCanvas+90<brick1.posX && xCrowCanvas+90<brick2.posX))
+				{	
+					if(!(yCrowCanvas+90<brick1.posY && yCrowCanvas+90<brick2.posY
+						&& yCrowCanvas+10>brick1.posY+80 && yCrowCanvas+10>brick2.posY+80))
+					perdiste();
+				}
+				
+				ctx.clearRect(0,0,600,300);
+				ctx.drawImage(fondo,xFonSprite,50,600,290,0,0,600,300);
+				if(n>=3)
+					ctx.drawImage(brick,brick4.posX,brick4.posY,80,80);
+				if(n>=2)
+					ctx.drawImage(brick,brick3.posX,brick3.posY,80,80);
+				if(n>=1)		
+					ctx.drawImage(brick,brick2.posX,brick2.posY,80,80);
+				ctx.drawImage(brick,brick1.posX,brick1.posY,80,80);
+				
+				ctx.drawImage(crow,xCrowSprite,0,97,120,xCrowCanvas,yCrowCanvas,100,100);
+				n++;
+			},50);
+			
+			var obstaculos=setInterval(function(){
+				
+				if(xFonSprite<2304)		//hace el movimiento del fondo
+					xFonSprite+=25;
+				else
+					xFonSprite=0;
+				
+				
+				brick1.posX-=25;
+				brick2.posX-=25;
+				brick3.posX-=25;
+				brick4.posX-=25;
+				
+				if(brick4.posX<=350)		//si ya hay espacio para un nuevo brick
+				{
+					brick1=brick2;
+					brick2=brick3;
+					brick3=brick4;
+					brick4=crearBrick();
+				}
+				
+				
+			},200);
+
+			function perdiste()
+			{
+				clearInterval(obstaculos);
+				clearInterval(imprimir);
+				alert("Perdiste");
+			}
+		</script>
+	</body>
+</html>
