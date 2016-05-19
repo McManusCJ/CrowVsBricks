@@ -23,18 +23,16 @@
 			fondo.src="./f3.jpg";
 			var xFonSprite=0;
 			var xCrowSprite=0;
-			/*var xBrickCanvas=500;	//valMax=500(?)
-			var yBrickCanvas=0;		//posibles valores 0,100,200*/
-			var xCrowCanvas=50;
+			//var xCrowCanvas=50;
 			var yCrowCanvas=50;
 			var n=0;
 			
 			function crearBrick()
 			{
 				var BrickCanvas=new Object();
-				BrickCanvas.posX=550;
+				BrickCanvas.posX=560;
 				y=parseInt(Math.random()*100%3);
-				BrickCanvas.posY=y*100;
+				BrickCanvas.posY=y*110;
 				return BrickCanvas;
 			}
 			
@@ -50,21 +48,24 @@
 			});
 			
 			var imprimir=setInterval(function(){
-				if(xCrowSprite<291)	//esto hace que aletee
-					xCrowSprite+=97;
-				else
-					xCrowSprite=0;
-				
-				if(yCrowCanvas<313)	//hace que tienda a caer y que no se pierda despues de los limites
-					yCrowCanvas+=7;
-				else
-					perdiste();
-				
-				if(!(xCrowCanvas+90<brick1.posX && xCrowCanvas+90<brick2.posX))
+					
+				if((brick1.posX<130) && ((brick1.posX+80)>65))	//bien
 				{	
-					if(!(yCrowCanvas+90<brick1.posY && yCrowCanvas+90<brick2.posY
-						&& yCrowCanvas+10>brick1.posY+80 && yCrowCanvas+10>brick2.posY+80))
-					perdiste();
+					if((brick1.posY<(yCrowCanvas+80)) && ((brick1.posY+80)>yCrowCanvas)){
+						perdiste();
+						console.log("Chocaste con 1");
+					}
+				}
+				else
+				{
+					if((brick2.posX<130) && ((brick2.posX+80)>65))	//bien
+					{	
+						if((brick2.posY<(yCrowCanvas+80)) && ((brick2.posY+80)>yCrowCanvas))
+						{						
+							perdiste();
+							console.log("Chocaste con 2");
+						}
+					}
 				}
 				
 				ctx.clearRect(0,0,600,300);
@@ -75,10 +76,21 @@
 					ctx.drawImage(brick,brick3.posX,brick3.posY,80,80);
 				if(n>=1)		
 					ctx.drawImage(brick,brick2.posX,brick2.posY,80,80);
+
 				ctx.drawImage(brick,brick1.posX,brick1.posY,80,80);
 				
-				ctx.drawImage(crow,xCrowSprite,0,97,120,xCrowCanvas,yCrowCanvas,100,100);
+				ctx.drawImage(crow,xCrowSprite,0,97,120,50,yCrowCanvas,100,100);
 				n++;
+				
+				if(xCrowSprite<291)	//esto hace que aletee
+					xCrowSprite+=97;
+				else
+					xCrowSprite=0;
+				
+				if(yCrowCanvas<313)	//hace que tienda a caer y que no se pierda despues de los limites
+					yCrowCanvas+=7;
+				else
+					perdiste();
 			},50);
 			
 			var obstaculos=setInterval(function(){
@@ -88,13 +100,22 @@
 				else
 					xFonSprite=0;
 				
+				/*if(brick1.posX>-60)
+				{*/
+					brick1.posX-=20;
+					brick2.posX-=20;
+					brick3.posX-=20;
+					brick4.posX-=20;
+				/*}
+				else{
+					brick1=brick2;
+					brick2=brick3;
+					brick3=brick4;
+					brick4=crearBrick();
+				}*/
+				console.log(brick1.posX);
 				
-				brick1.posX-=25;
-				brick2.posX-=25;
-				brick3.posX-=25;
-				brick4.posX-=25;
-				
-				if(brick4.posX<=350)		//si ya hay espacio para un nuevo brick
+				if(brick4.posX+220==600)		//si ya hay espacio para un nuevo brick
 				{
 					brick1=brick2;
 					brick2=brick3;
