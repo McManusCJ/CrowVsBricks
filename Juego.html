@@ -19,6 +19,8 @@
 	<body>
 		<canvas id="img"  width="600px" height="300px">
 		</canvas>
+		<button type="button"><a href="inicio.html"> Volver al menu </a></button>
+		<button type="button"><a href="Juego.html"> Reiniciar </a></button>
 		<script src="./jQuery.js"></script>
 		<script>
 			var c = document.getElementById("img");
@@ -85,7 +87,7 @@
 				{	
 					if((brick1.posY < (yCrowCanvas+20)) && ((brick1.posY+30) > yCrowCanvas)){
 						perdiste();
-						console.log("Chocaste con 1");
+						//console.log("Chocaste con 1");
 					}
 				}
 				else
@@ -95,7 +97,7 @@
 						if((brick2.posY < (yCrowCanvas+20)) && ((brick2.posY+30) > yCrowCanvas))
 						{						
 							perdiste();
-							console.log("Chocaste con 2");
+							//console.log("Chocaste con 2");
 						}
 					}
 				}
@@ -124,7 +126,7 @@
 					brick2.posX-=20;
 					brick3.posX-=20;
 					brick4.posX-=20;
-					console.log(brick1.posX);
+					//console.log(brick1.posX);
 				
 				if(brick4.posX+220==600)		//si ya hay espacio para un nuevo brick
 				{

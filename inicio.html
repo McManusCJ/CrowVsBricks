@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> THE CROW </title>
+		
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE-edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		
+		<link href="./bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+		<link rel="shortcut icon" href="./crow.jpg" type="image/png"/>
+		
+		<script src="./jquery.js"/></script>
+		<script src="./bootstrap/dist/js/bootstrap.min.js"></script>
+	</head>
+	<body style="background-color:#513490;">
+		<div class="container">
+			<div  class="col-md-12">
+				<div class="col-md-6">
+					<img src="crowIntro.jpg" width="300" height="300	" alt="THE CROW" class="img-circle center-block"/>
+				</div>
+				<div class="col-md-6">
+					<ul class="nav nav-pills nav-stacked">
+						<li class="active text-center" style="font-size: 30px;"><a href="./juego.html"> Jugar </a></li>
+						<button type="button"  class="btn btn-block btn-lg" data-toggle="modal" data-target="#instruccion"> Instrucciones </button>	
+					</ul>
+				</div>
+					<div class="modal fade" id="instruccion">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button class="close" data-dismiss="modal"><span>&times;</span></button>
+									<h4 class="modal-title" id="instruccion"> INSTRUCCIONES </h4>
+								</div>
+								<div class="modal-body text-justify">
+									Guia por su pequeña travesía, al cuervo, el surcara los cielos, mientras tu le ayudaras a esquivar los bloques que le impiden su paso, ten cuidado con ellos. Consiguel el mayor numero de puntos presionando la tecla <kbd>espacio</kbd>, para hacer flotar al cuervo de arriba a bajo.
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</body>
+</html>
