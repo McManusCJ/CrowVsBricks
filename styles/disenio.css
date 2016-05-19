@@ -1,0 +1,14 @@
+body{
+	background-color:#513490;
+}
+#titulo{
+	font-family: fantasy;
+	font-size: 40px;
+}
+canvas{
+	background-image:url("../resources/f3.jpg");
+	position:absolute;
+	top:160px;
+	left:320px;
+	border-radius:25px;
+}
