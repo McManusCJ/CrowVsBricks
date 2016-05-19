@@ -4,8 +4,15 @@
 		<meta charset="UTF-8"/>
 		<title> THE CROW </title>
 		<style>
+			body{
+				background-color:#513490;
+			}
 			canvas{
 				background-image:url("./f3.jpg");
+				position:absolute;
+				top:160px;
+				left:320px;
+				border-radius:25px;
 			}
 		</style>
 	</head>
@@ -24,9 +31,20 @@
 			fondo.src = "./f3.jpg";
 			var xFonSprite=0;
 			var xCrowSprite=0;
-			//var xCrowCanvas=50;
 			var yCrowCanvas=50;
 			var n=0;
+			var p=0;
+			
+			function perdiste()
+			{
+				clearInterval(obstaculos);
+				clearInterval(imprimir);
+				ctx.font = "40px Comic Sans MS";
+				ctx.fillStyle = "#230043";
+				ctx.fillText("Game over", 190, 150);
+				ctx.font="30px Comic Sans MS";
+				ctx.fillText("Tu puntaje fue "+p,170,220)
+			}
 			
 			function crearBrick()
 			{
@@ -37,10 +55,10 @@
 				return BrickCanvas;
 			}
 			
-				var brick1 = crearBrick();
-				var brick2 = crearBrick();
-				var brick3 = crearBrick();
-				var brick4 = crearBrick();
+			var brick1 = crearBrick();
+			var brick2 = crearBrick();
+			var brick3 = crearBrick();
+			var brick4 = crearBrick();
 				
 			$(document).keydown(function(event){
 				if(event.which == 32)
@@ -82,8 +100,6 @@
 					}
 				}
 				
-				
-				
 				if(xCrowSprite < 291)	//esto hace que aletee
 					xCrowSprite+=97;
 				else
@@ -93,6 +109,8 @@
 					yCrowCanvas+=7;
 				else
 					perdiste();
+					
+				p++;
 			},50);
 			
 			var obstaculos=setInterval(function(){
@@ -115,18 +133,8 @@
 					brick3 = brick4;
 					brick4 = crearBrick();
 				}
-				
-				
 			},200);
 
-			function perdiste()
-			{
-				clearInterval(obstaculos);
-				clearInterval(imprimir);
-				ctx.font = "40px Comic Sans MS";
-				ctx.fillStyle = "#230043";
-				ctx.fillText("Game over", 190, 150); 
-			}
 		</script>
 	</body>
 </html>
